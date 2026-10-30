@@ -86,22 +86,41 @@
     </div>
   </section>
 
-  <section class="tinted">
+  <section class="tinted" id="make-it-plain">
     <div class="container plain">
       <div>
-        <span class="label">Make it plain</span>
-        <h2 style="margin-top:10px">The clearer you write it, the easier it is to recognize when it comes.</h2>
-        <p class="muted" style="margin-top:16px;font-size:1.08rem">As you write, the Make it plain meter suggests details to add: what it is, how it looks, a name or number, and when or where. It only encourages. It never stops you from saving.</p>
+        <span class="label">The Make it plain meter</span>
+        <h2 style="margin-top:10px">Write it out completely, so you'll know it when it comes.</h2>
+        <p class="muted" style="margin-top:16px;font-size:1.08rem">Every time you write an ask, the Make it plain meter checks it for four things and fills in as your ask gets clearer. If something is missing, it tells you what to add.</p>
+        <ol class="checks-explained">
+          <li><strong>What it is</strong><span>Say exactly what you're asking for.</span></li>
+          <li><strong>Details</strong><span>How it looks, how big, what kind.</span></li>
+          <li><strong>Name or number</strong><span>A name, brand, year, or amount.</span></li>
+          <li><strong>When or where</strong><span>A date, a season, or a place.</span></li>
+        </ol>
+        <p class="fine" style="margin-top:18px">The meter only encourages. It never stops you from saving an ask.</p>
       </div>
-      <div class="plain-card" aria-label="Example of the Make it plain meter">
-        <div class="instead"><span class="label">Instead of</span><s>I want a better job</s></div>
-        <div class="arrow" aria-hidden="true">↓</div>
-        <div class="write">
-          <span class="label">Write</span>
-          <p>A full-time remote job I love, paying $85,000 a year, by June 2027</p>
-          <div class="chips"><span class="chip">What it is ✓</span><span class="chip">Details ✓</span><span class="chip">Amount ✓</span><span class="chip">When ✓</span></div>
+
+      <div class="meter-demo" aria-labelledby="demo-title">
+        <div class="demo-head">
+          <span class="label" id="demo-title">Try it: write an ask</span>
+          <span class="demo-note">Works like the app</span>
         </div>
-        <div><div style="display:flex;justify-content:space-between;font-size:.88rem"><strong>Make it plain</strong><span class="muted">Plain and clear</span></div><div class="meter"><span></span><span></span><span></span><span></span></div></div>
+        <label for="askInput" class="sr">Your ask</label>
+        <textarea id="askInput" rows="3" spellcheck="true">A full-time remote job I love, paying $85,000 a year, by June 2027</textarea>
+        <div class="meter-row">
+          <strong>Make it plain</strong>
+          <span id="plainRating">Plain and clear</span>
+        </div>
+        <div class="meter big" id="plainMeter" role="meter" aria-valuemin="0" aria-valuemax="4" aria-valuenow="4" aria-labelledby="plainRatingLabel"><span></span><span></span><span></span><span></span></div>
+        <span id="plainRatingLabel" class="sr">Make it plain score</span>
+        <ul class="check-list" id="plainChecks" aria-live="polite"></ul>
+        <div class="examples">
+          <span class="fine">Compare:</span>
+          <button type="button" class="chip-btn" data-ask="I want a better job">I want a better job</button>
+          <button type="button" class="chip-btn" data-ask="A remote job I love">A remote job I love</button>
+          <button type="button" class="chip-btn" data-ask="A full-time remote job I love, paying $85,000 a year, by June 2027">The plain version</button>
+        </div>
       </div>
     </div>
   </section>
@@ -177,5 +196,42 @@
   </section>
 </main>
 <script src="site.js"></script>
+<script>
+/* Same rules as the app's Make it plain meter (Code/src/lib/make-it-plain.ts) */
+const DESCRIBING_WORDS = /\b(black|white|red|blue|green|gold|silver|grey|gray|brown|yellow|pink|purple|orange|navy|cream|new|brand|custom|large|big|small|little|tall|leather|wood|wooden|brick|stone|glass|vintage|classic|luxury|paid[- ]off|debt[- ]free|four[- ]bedroom|three[- ]bedroom|two[- ]bedroom|ocean|beach|mountain|lake|corner|private|healthy|happy|loving|kind|full[- ]time|part[- ]time|remote)\b/i;
+const NAME_OR_NUMBER = /\d|\$|\b[A-Z][a-z]+\b/;
+const WHEN_OR_WHERE = /\b(by|before|in|on|at|near|within|every|each|this|next|year|month|week|summer|winter|spring|fall|january|february|march|april|may|june|july|august|september|october|november|december|city|town|state|country|street|road)\b|\b20\d\d\b/i;
+function checkPlain(text){
+  const trimmed = text.trim();
+  const words = trimmed.split(/\s+/).filter(Boolean);
+  const rest = words.slice(1).join(" ");
+  const checks = [
+    { label: "What it is", met: words.length >= 3, tip: "Say exactly what it is." },
+    { label: "Details", met: DESCRIBING_WORDS.test(trimmed) || words.length >= 10, tip: "Add a color, size, or how it looks." },
+    { label: "Name or number", met: /\d|\$/.test(trimmed) || NAME_OR_NUMBER.test(rest), tip: "Add a name, brand, year, or amount." },
+    { label: "When or where", met: WHEN_OR_WHERE.test(rest), tip: "Add a when or where." },
+  ];
+  const score = trimmed ? checks.filter(c => c.met).length : 0;
+  const rating = ["Just getting started","A good start","Getting clearer","Very specific","Plain and clear"][score];
+  return { checks, score, rating };
+}
+const input = document.getElementById("askInput");
+const meter = document.getElementById("plainMeter");
+const list = document.getElementById("plainChecks");
+const rating = document.getElementById("plainRating");
+function render(){
+  const r = checkPlain(input.value);
+  [...meter.children].forEach((seg,i) => seg.classList.toggle("on", i < r.score));
+  meter.setAttribute("aria-valuenow", r.score);
+  meter.dataset.score = r.score;
+  rating.textContent = r.rating;
+  list.innerHTML = r.checks.map(c =>
+    '<li class="' + (c.met ? "met" : "") + '"><span class="tick" aria-hidden="true">' + (c.met ? "✓" : "") + '</span><span><strong>' + c.label + '</strong>' +
+    (c.met ? '' : '<em>' + c.tip + '</em>') + '<span class="sr">' + (c.met ? " (done)" : " (missing)") + '</span></span></li>').join("");
+}
+input.addEventListener("input", render);
+document.querySelectorAll(".chip-btn").forEach(b => b.addEventListener("click", () => { input.value = b.dataset.ask; render(); }));
+render();
+</script>
 </body>
 </html>
