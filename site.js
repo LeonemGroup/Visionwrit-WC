@@ -59,7 +59,7 @@ async function sendForm({ form, button, box, subject, fields, replyTo }){
     if (res.ok && String(data.success) === "true") {
       box.className = "result show ok";
       box.innerHTML = "<strong>Thank you. Your message was sent.</strong><p class='muted' style='margin-top:4px'>" +
-        (replyTo ? "We'll reply to " + esc(replyTo) + " within two business days." : "We read every message.") + "</p>";
+        (replyTo ? "We'll reply to " + esc(replyTo) + " soon." : "We read every message.") + "</p>";
       form.reset();
     } else if (/activat/i.test(data.message || "")) {
       box.className = "result show ok";
