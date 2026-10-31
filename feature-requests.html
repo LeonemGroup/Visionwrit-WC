@@ -59,6 +59,7 @@
       </div>
 
       <form class="form" id="ideaForm" novalidate>
+        <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
         <div><label for="i-title">Your idea in one line</label><input id="i-title" required placeholder="A home-screen widget with today's ask"></div>
         <div><label for="i-why">What would it help you do?</label><textarea id="i-why" required></textarea></div>
         <div class="row">
@@ -67,7 +68,7 @@
         </div>
         <div><label for="i-email">Email <span class="opt">(optional)</span></label><input id="i-email" type="email" autocomplete="email"></div>
         <div class="err" id="i-err" role="alert"></div>
-        <div><button class="btn btn-primary" type="submit">Prepare request</button></div>
+        <div><button class="btn btn-primary" type="submit" id="i-send">Send request</button></div>
         <div class="result" id="i-result" aria-live="polite"></div>
       </form>
     </div>
@@ -82,8 +83,11 @@ document.getElementById("ideaForm").addEventListener("submit", e => {
   if(!why){ err.textContent = "Tell us what it would help you do."; return; }
   if(email && !emailOk(email)){ err.textContent = "That email doesn't look right. Fix it or leave it blank."; return; }
   err.textContent = "";
-  showResult(document.getElementById("i-result"), "[Feature request] " + title,
-    "Idea: " + title + "\nArea: " + val("i-area") + "\nImpact: " + val("i-impact") + "\nEmail: " + (email || "-") + "\n\nWhat it would help with:\n" + why);
+  sendForm({
+    form: e.target, button: document.getElementById("i-send"), box: document.getElementById("i-result"),
+    subject: "[Feature request] " + title, replyTo: email || null,
+    fields: { Idea: title, "Part of the app": val("i-area"), Impact: val("i-impact"), Email: email || "-", "What it would help with": why }
+  });
 });
 </script>
 </body>

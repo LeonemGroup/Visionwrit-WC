@@ -34,18 +34,46 @@ function esc(s){return s.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt
 const val = id => (document.getElementById(id)?.value || "").trim();
 const emailOk = e => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
 
-function showResult(box, subject, body){
-  const mailto = "mailto:" + SUPPORT_EMAIL + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
-  box.innerHTML =
-    "<strong>Your message is ready.</strong>" +
-    "<p class='muted' style='font-size:.93rem;margin-top:4px'>Open it in your email app, or copy it and send it to <strong>" + esc(SUPPORT_EMAIL) + "</strong>.</p>" +
-    "<pre>Subject: " + esc(subject) + "\n\n" + esc(body) + "</pre>" +
-    "<div class='actions'><a class='btn btn-primary btn-sm' href='" + mailto + "'>Open in email app</a>" +
-    "<button type='button' class='btn btn-outline btn-sm' data-copy>Copy message</button><span class='muted' data-status style='font-size:.9rem'></span></div>";
-  box.classList.add("show");
-  box.querySelector("[data-copy]").addEventListener("click", async () => {
-    const st = box.querySelector("[data-status]");
-    try { await navigator.clipboard.writeText("To: " + SUPPORT_EMAIL + "\nSubject: " + subject + "\n\n" + body); st.textContent = "Copied."; }
-    catch(e){ st.textContent = "Couldn't copy. Select the text above instead."; }
+/* Sends a form to the support inbox through FormSubmit (formsubmit.co).
+   The first message ever sent triggers a one-time "Activate form" email to SUPPORT_EMAIL. */
+async function sendForm({ form, button, box, subject, fields, replyTo }){
+  const label = button.textContent;
+  button.disabled = true;
+  button.textContent = "Sending…";
+  box.className = "result";
+  box.textContent = "";
+  const payload = Object.assign({}, fields, {
+    _subject: subject,
+    _template: "table",
+    _captcha: "false",
+    _honey: form.querySelector("[name=_honey]")?.value || ""
   });
+  if (replyTo) payload._replyto = replyTo;
+  try {
+    const res = await fetch("https://formsubmit.co/ajax/" + SUPPORT_EMAIL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(payload)
+    });
+    const data = await res.json().catch(() => ({}));
+    if (res.ok && String(data.success) === "true") {
+      box.className = "result show ok";
+      box.innerHTML = "<strong>Thank you. Your message was sent.</strong><p class='muted' style='margin-top:4px'>" +
+        (replyTo ? "We'll reply to " + esc(replyTo) + " within two business days." : "We read every message.") + "</p>";
+      form.reset();
+    } else if (/activat/i.test(data.message || "")) {
+      box.className = "result show ok";
+      box.innerHTML = "<strong>Almost ready.</strong><p class='muted' style='margin-top:4px'>This form is being switched on. Check " + esc(SUPPORT_EMAIL) +
+        " for an email from FormSubmit and click Activate Form, then send this message again.</p>";
+    } else {
+      throw new Error(data.message || "The message couldn't be sent.");
+    }
+  } catch (e) {
+    box.className = "result show bad";
+    box.innerHTML = "<strong>Your message didn't go through.</strong><p class='muted' style='margin-top:4px'>Please try again in a moment, or email us at <a href='mailto:" +
+      SUPPORT_EMAIL + "'>" + esc(SUPPORT_EMAIL) + "</a>.</p>";
+  } finally {
+    button.disabled = false;
+    button.textContent = label;
+  }
 }

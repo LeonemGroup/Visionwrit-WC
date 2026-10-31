@@ -234,6 +234,11 @@ textarea{min-height:140px;resize:vertical}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .err{color:#E39A8C}}
 .result{display:none;padding:20px;border-radius:16px;background:var(--tint)}
 .result.show{display:block}
+.result.ok{border-left:4px solid var(--gold)}
+.result.bad{border-left:4px solid #9A3B2E}
+.result a{color:var(--accent-text)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.btn:disabled{opacity:.6;cursor:wait}
 .result pre{white-space:pre-wrap;font:400 .86rem/1.55 ui-monospace,Consolas,monospace;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin:12px 0;max-height:220px;overflow:auto}
 .result .actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 

@@ -51,6 +51,7 @@
       </div>
 
       <form class="form" id="helpForm" novalidate>
+        <input type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
         <div class="row">
           <div><label for="h-name">Name</label><input id="h-name" autocomplete="name"></div>
           <div><label for="h-email">Email</label><input id="h-email" type="email" autocomplete="email" required></div>
@@ -62,7 +63,7 @@
         </div>
         <div><label for="h-msg">How can we help?</label><textarea id="h-msg" required placeholder="What happened, and what did you expect to happen?"></textarea></div>
         <div class="err" id="h-err" role="alert"></div>
-        <div><button class="btn btn-primary" type="submit">Prepare message</button></div>
+        <div><button class="btn btn-primary" type="submit" id="h-send">Send message</button></div>
         <div class="result" id="h-result" aria-live="polite"></div>
       </form>
     </div>
@@ -77,8 +78,11 @@ document.getElementById("helpForm").addEventListener("submit", e => {
   if(msg.length < 10){ err.textContent = "Add a few more details so we can help."; return; }
   err.textContent = "";
   const topic = val("h-topic");
-  showResult(document.getElementById("h-result"), "[Help] " + topic,
-    "Name: " + (val("h-name") || "-") + "\nEmail: " + email + "\nTopic: " + topic + "\nDevice: " + (val("h-device") || "-") + "\n\n" + msg);
+  sendForm({
+    form: e.target, button: document.getElementById("h-send"), box: document.getElementById("h-result"),
+    subject: "[Help] " + topic, replyTo: email,
+    fields: { Name: val("h-name") || "-", Email: email, Topic: topic, Device: val("h-device") || "-", Message: msg }
+  });
 });
 </script>
 </body>

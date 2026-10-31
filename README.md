@@ -29,6 +29,11 @@ Open `index.html` in a browser.
 
 ## Forms
 
-The Help and Feature Request forms currently prepare an email for the visitor to send. When the site is hosted, connect them to a form service (such as Formspree) so they send directly to the support inbox.
+The Help and Feature Request forms send directly to `SUPPORT_EMAIL` (support@visionwrit.com) through FormSubmit (formsubmit.co), a free service that needs no account.
 
-Last updated October 30, 2026.
+- The first message ever sent triggers a one-time "Activate form" email from FormSubmit to support@visionwrit.com. Click the link in it once; every message after that is delivered.
+- Replies go straight to the sender: the visitor's email is set as the reply-to address.
+- A hidden field traps spam bots.
+- To hide the inbox address from the page source, FormSubmit's activation email offers a random alias. Replace the address in the `fetch` URL in `site.js` with that alias.
+
+Last updated October 31, 2026.
