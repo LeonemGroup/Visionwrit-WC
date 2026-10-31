@@ -1,0 +1,18 @@
+# Visionwrit
+
+> Visionwrit is a vision board and asks journal app for Android. People write what they hope for as clear, specific "asks" with a photo, read them every morning and night, and look back every 6 or 12 months to count what they have received. It is built on Habakkuk 2:2: "Write the vision, and make it plain." Visionwrit is a Leonem Group LLC company.
+
+Key facts:
+- Platform: Android first, launching on Google Play in January 2027. iPhone is planned for 2027.
+- Price: free to start (up to 20 asks, one reading reminder). Visionwrit Plus costs $19.99 a year with a 7-day free trial, $3.99 a month, or $49.99 once for lifetime access.
+- Privacy: no account is needed to start; asks are stored on the user's phone. Optional app lock and PDF export.
+- Faith is part of the foundation but never forced: Today's word mixes Bible verses (World English Bible) with gratitude and wisdom quotes, and Scripture can be turned off.
+- Make it plain meter: checks each ask for four things (what it is, details, a name or number, a when or where) and suggests what to add. It never blocks saving.
+- Support: support@visionwrit.com or the contact form at https://visionwrit.com/help.html#contact
+
+## Pages
+
+- [Home](https://visionwrit.com/): what Visionwrit is, how it works, the Make it plain meter, features, and Free vs Plus plans
+- [Help Center](https://visionwrit.com/help.html): help topics and the contact form
+- [FAQ](https://visionwrit.com/faq.html): answers about asks, reading and reminders, the vision board, Visionwrit Plus, privacy and troubleshooting
+- [Feature Requests](https://visionwrit.com/feature-requests.html): the product roadmap and a form to suggest features

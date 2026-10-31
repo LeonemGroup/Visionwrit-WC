@@ -1,0 +1,13 @@
+{
+  "name": "Visionwrit",
+  "short_name": "Visionwrit",
+  "description": "Write the vision. Make it plain. Read it daily.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#0F1B33",
+  "theme_color": "#0F1B33",
+  "icons": [
+    { "src": "img/app-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "img/logo-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

@@ -25,7 +25,40 @@ In the footer (in `site.js`): change "A Leonem Group LLC company" to "Visionwrit
 
 ## After changing styles.css or site.js
 
-Each page loads them as `styles.css?v=20261031d` and `site.js?v=20261031d`. Change that date on all four pages whenever either file changes, so visitors' browsers fetch the new version instead of a cached one.
+Each page loads them as `styles.css?v=20261031e` and `site.js?v=20261031e`. Change that date on all four pages whenever either file changes, so visitors' browsers fetch the new version instead of a cached one.
+
+## Search and AI visibility (SEO and GEO)
+
+Everything here is invisible to visitors but read by Google, Bing, ChatGPT, Claude, Perplexity and social apps. No hidden keyword text is used: Google treats that as spam.
+
+**In each page's `<head>`** (between `<!-- SEO:START -->` and `<!-- SEO:END -->`):
+- Title and meta description written for that page
+- Canonical URL (the one official address of the page)
+- Robots tag allowing large image previews and full snippets
+- Open Graph and Twitter tags, so shared links show `img/og-image.jpg` with a title and description
+- Structured data (JSON-LD) describing Visionwrit as an Organization (parent: Leonem Group LLC), the WebSite, and each page. The home page also describes the MobileApplication (Android, features, Free and Plus prices). The FAQ page lists every question and answer, generated from the visible FAQ. Inner pages include breadcrumbs.
+
+If you add, change or remove an FAQ answer, the FAQ structured data must change to match. Ask Claude to regenerate the SEO blocks.
+
+**Site files:**
+| File | Purpose |
+| --- | --- |
+| `robots.txt` | Lets all search engines and AI search crawlers (OAI-SearchBot, ChatGPT-User, Claude-SearchBot, PerplexityBot and others) read the site, and points them to the sitemap |
+| `sitemap.xml` | Lists every page. Update `lastmod` when a page changes |
+| `llms.txt` | A plain summary of Visionwrit and its pages for AI tools. Low effort, no proven ranking effect |
+| `site.webmanifest` | App name, colors and icons for browsers and phones |
+| `404.html` | Friendly "page not found" page; not indexed |
+| `0f2911fdf559d3637e2eaddbd59c2a99.txt` | IndexNow key, proves you own the site so you can tell Bing (and ChatGPT search, which uses Bing) about updates instantly. Don't delete it |
+| `img/og-image.jpg` | 1200 x 630 share image |
+| `img/logo-512.png` | Logo used in structured data |
+
+**One-time setup (do these once the site is live):**
+1. **Google Search Console** (search.google.com/search-console): add `visionwrit.com` as a Domain property, verify with the TXT record it gives you in GoDaddy DNS, then submit `sitemap.xml`.
+2. **Bing Webmaster Tools** (bing.com/webmasters): sign in and choose *Import from Google Search Console*. Bing powers Copilot and ChatGPT search results. Its AI Performance report shows when AI answers cite you.
+3. **After each publish**, tell Bing right away by opening this link in your browser (change the page if needed):
+   `https://api.indexnow.org/indexnow?url=https://visionwrit.com/&key=0f2911fdf559d3637e2eaddbd59c2a99`
+
+**Add later, when they exist:** the Google Play link (`PLAY_STORE_URL` in `site.js`, and as `downloadUrl` in the home page structured data), social media profiles (`sameAs` in the Organization data), and real ratings once the app has Play Store reviews. Never add made-up ratings: Google penalizes them.
 
 ## Preview it
 
