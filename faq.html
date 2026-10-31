@@ -306,7 +306,7 @@
 <!-- SEO:END -->
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;1,8..60,500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20261031g">
+<link rel="stylesheet" href="styles.css?v=20261031h">
 </head>
 <body data-page="/faq">
 <main>
@@ -395,7 +395,7 @@
     </div>
   </section>
 </main>
-<script src="site.js?v=20261031g"></script>
+<script src="site.js?v=20261031h"></script>
 <script>
 const items = [...document.querySelectorAll("#faqBody details")];
 const groups = [...document.querySelectorAll(".faq-group")];
@@ -410,5 +410,7 @@ input.addEventListener("input", e => filter(e.target.value));
 const q = new URLSearchParams(location.search).get("q");
 if(q){ input.value = q; filter(q); }
 </script>
+<!-- Kit waitlist pop-up (settings: timing, frequency, devices are set in Kit) -->
+<script async data-uid="b8080553c5" src="https://visionwrit.kit.com/b8080553c5/index.js"></script>
 </body>
 </html>

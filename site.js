@@ -1,6 +1,7 @@
 /* ===== Settings: change these when the site goes live ===== */
 const SUPPORT_EMAIL = "support@visionwrit.com";   // placeholder until the domain and inbox exist
 const PLAY_STORE_URL = "#";                        // Google Play listing (com.visionwrit.app) once published
+const KIT_FORM_UID = "b8080553c5";                // Kit waitlist pop-up form (visionwrit.kit.com)
 /* ========================================================== */
 
 const NAV = [["/","Home"],["/help","Help Center"],["/faq","FAQ"],["/feature-requests","Feature Requests"]];
@@ -15,7 +16,7 @@ const LOGO = '<img src="img/mark.png" alt="" width="17" height="34">Visionwrit';
     '<button class="menu-btn" aria-expanded="false" aria-controls="navlinks" aria-label="Menu"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 9h14M2 13h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>' +
     '<nav class="nav-links" id="navlinks" aria-label="Main">' +
     NAV.map(([h,t]) => '<a href="' + h + '"' + (h===page ? ' aria-current="page"' : '') + '>' + t + '</a>').join("") +
-    '</nav><a class="btn btn-primary btn-sm play" href="#">Get the app</a></div>';
+    '</nav><a class="btn btn-primary btn-sm waitlist" data-formkit-toggle="b8080553c5" href="https://visionwrit.kit.com/b8080553c5">Join the waitlist</a></div>';
   document.body.prepend(header);
   const btn = header.querySelector(".menu-btn"), links = header.querySelector(".nav-links");
   btn.addEventListener("click", () => { const o = links.classList.toggle("open"); btn.setAttribute("aria-expanded", o); });
@@ -24,7 +25,7 @@ const LOGO = '<img src="img/mark.png" alt="" width="17" height="34">Visionwrit';
   footer.innerHTML =
     '<div class="container foot"><div><a class="logo" href="/">' + LOGO + '</a><p>Write the vision. Make it plain. Read it daily.</p></div>' +
     '<div><h4>Support</h4><ul><li><a href="/help">Help Center</a></li><li><a href="/faq">FAQ</a></li><li><a href="/help#contact">Contact us</a></li></ul></div>' +
-    '<div><h4>Visionwrit</h4><ul><li><a class="play" href="#">Google Play</a></li><li><a href="/#plus">Visionwrit Plus</a></li><li><a href="/feature-requests">Roadmap</a></li></ul></div></div>' +
+    '<div><h4>Visionwrit</h4><ul><li><a class="waitlist" data-formkit-toggle="b8080553c5" href="https://visionwrit.kit.com/b8080553c5">Join the waitlist</a></li><li><a href="/#plus">Visionwrit Plus</a></li><li><a href="/feature-requests">Roadmap</a></li></ul></div></div>' +
     '<div class="container legal"><span>© 2026 Visionwrit · A Leonem Group LLC company</span></div>';
   document.body.append(footer);
   document.querySelectorAll(".play").forEach(a => a.href = PLAY_STORE_URL);

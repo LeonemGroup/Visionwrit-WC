@@ -31,7 +31,15 @@ In the footer (in `site.js`): change "A Leonem Group LLC company" to "Visionwrit
 
 ## After changing styles.css or site.js
 
-Each page loads them as `styles.css?v=20261031g` and `site.js?v=20261031g`. Change that date on all four pages whenever either file changes, so visitors' browsers fetch the new version instead of a cached one.
+Each page loads them as `styles.css?v=20261031h` and `site.js?v=20261031h`. Change that date on all four pages whenever either file changes, so visitors' browsers fetch the new version instead of a cached one.
+
+## Waitlist pop-up (Kit)
+
+The waitlist pop-up is a Kit form (`b8080553c5`, account visionwrit.kit.com). Its wording, design, timing, how often it shows and which devices see it are all set inside Kit, not in these files. Custom CSS and images for it are in `Business/02 Product Design/Brand/Kit`.
+
+- Each main page loads it with one line just before `</body>`: `<script async data-uid="b8080553c5" src="https://visionwrit.kit.com/b8080553c5/index.js"></script>`
+- Buttons with `data-formkit-toggle="b8080553c5"` open the pop-up instantly: "Join the waitlist" in the header and footer, and "Notify me at launch" in the home page hero and closing banner. If the pop-up hasn't loaded, they open Kit's hosted signup page instead.
+- **At launch:** change those buttons back to "Get it on Google Play" and set `PLAY_STORE_URL` in `site.js`.
 
 ## Search and AI visibility (SEO and GEO)
 

@@ -141,7 +141,7 @@
 <!-- SEO:END -->
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;1,8..60,500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20261031g">
+<link rel="stylesheet" href="styles.css?v=20261031h">
 </head>
 <body data-page="/">
 <main>
@@ -151,7 +151,7 @@
         <h1>Write the vision.<br><em>Make it plain.</em><br>Read it daily.</h1>
         <p class="lede">Visionwrit helps you turn your hopes into clear, written asks, read them every morning and night, and never forget what you've been given.</p>
         <div class="actions">
-          <a class="btn btn-gold play" href="#">Get it on Google Play</a>
+          <a class="btn btn-gold waitlist" data-formkit-toggle="b8080553c5" href="https://visionwrit.kit.com/b8080553c5">Notify me at launch</a>
           <a class="btn btn-outline" href="#how">See how it works</a>
         </div>
         <p class="store-note">Coming to Android in December 2026 and iPhone in spring 2027.</p>
@@ -319,12 +319,12 @@
       <div class="band-navy on-navy">
         <img src="img/mark.png" alt="" width="45" height="90">
         <div><h2>Don't hold back. Make them grand.</h2><p>Write anything your imagination can reach, then read it every day.</p></div>
-        <a class="btn btn-gold play" href="#">Get it on Google Play</a>
+        <a class="btn btn-gold waitlist" data-formkit-toggle="b8080553c5" href="https://visionwrit.kit.com/b8080553c5">Notify me at launch</a>
       </div>
     </div>
   </section>
 </main>
-<script src="site.js?v=20261031g"></script>
+<script src="site.js?v=20261031h"></script>
 <script>
 /* Same rules as the app's Make it plain meter (Code/src/lib/make-it-plain.ts) */
 const DESCRIBING_WORDS = /\b(black|white|red|blue|green|gold|silver|grey|gray|brown|yellow|pink|purple|orange|navy|cream|new|brand|custom|large|big|small|little|tall|leather|wood|wooden|brick|stone|glass|vintage|classic|luxury|paid[- ]off|debt[- ]free|four[- ]bedroom|three[- ]bedroom|two[- ]bedroom|ocean|beach|mountain|lake|corner|private|healthy|happy|loving|kind|full[- ]time|part[- ]time|remote)\b/i;
@@ -362,5 +362,7 @@ input.addEventListener("input", render);
 document.querySelectorAll(".chip-btn").forEach(b => b.addEventListener("click", () => { input.value = b.dataset.ask; render(); }));
 render();
 </script>
+<!-- Kit waitlist pop-up (settings: timing, frequency, devices are set in Kit) -->
+<script async data-uid="b8080553c5" src="https://visionwrit.kit.com/b8080553c5/index.js"></script>
 </body>
 </html>
