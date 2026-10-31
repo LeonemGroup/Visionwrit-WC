@@ -3,7 +3,7 @@ const SUPPORT_EMAIL = "support@visionwrit.com";   // placeholder until the domai
 const PLAY_STORE_URL = "#";                        // Google Play listing (com.visionwrit.app) once published
 /* ========================================================== */
 
-const NAV = [["index.html","Home"],["help.html","Help Center"],["faq.html","FAQ"],["feature-requests.html","Feature Requests"]];
+const NAV = [["/","Home"],["/help","Help Center"],["/faq","FAQ"],["/feature-requests","Feature Requests"]];
 const LOGO = '<img src="img/mark.png" alt="" width="17" height="34">Visionwrit';
 
 (function layout(){
@@ -11,7 +11,7 @@ const LOGO = '<img src="img/mark.png" alt="" width="17" height="34">Visionwrit';
   const header = document.createElement("header");
   header.className = "nav";
   header.innerHTML =
-    '<div class="container"><a class="logo" href="index.html" aria-label="Visionwrit home">' + LOGO + '</a>' +
+    '<div class="container"><a class="logo" href="/" aria-label="Visionwrit home">' + LOGO + '</a>' +
     '<button class="menu-btn" aria-expanded="false" aria-controls="navlinks" aria-label="Menu"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 9h14M2 13h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>' +
     '<nav class="nav-links" id="navlinks" aria-label="Main">' +
     NAV.map(([h,t]) => '<a href="' + h + '"' + (h===page ? ' aria-current="page"' : '') + '>' + t + '</a>').join("") +
@@ -22,9 +22,9 @@ const LOGO = '<img src="img/mark.png" alt="" width="17" height="34">Visionwrit';
 
   const footer = document.createElement("footer");
   footer.innerHTML =
-    '<div class="container foot"><div><a class="logo" href="index.html">' + LOGO + '</a><p>Write the vision. Make it plain. Read it daily.</p></div>' +
-    '<div><h4>Support</h4><ul><li><a href="help.html">Help Center</a></li><li><a href="faq.html">FAQ</a></li><li><a href="help.html#contact">Contact us</a></li></ul></div>' +
-    '<div><h4>Visionwrit</h4><ul><li><a class="play" href="#">Google Play</a></li><li><a href="index.html#plus">Visionwrit Plus</a></li><li><a href="feature-requests.html">Roadmap</a></li></ul></div></div>' +
+    '<div class="container foot"><div><a class="logo" href="/">' + LOGO + '</a><p>Write the vision. Make it plain. Read it daily.</p></div>' +
+    '<div><h4>Support</h4><ul><li><a href="/help">Help Center</a></li><li><a href="/faq">FAQ</a></li><li><a href="/help#contact">Contact us</a></li></ul></div>' +
+    '<div><h4>Visionwrit</h4><ul><li><a class="play" href="#">Google Play</a></li><li><a href="/#plus">Visionwrit Plus</a></li><li><a href="/feature-requests">Roadmap</a></li></ul></div></div>' +
     '<div class="container legal"><span>© 2026 Visionwrit · A Leonem Group LLC company</span></div>';
   document.body.append(footer);
   document.querySelectorAll(".play").forEach(a => a.href = PLAY_STORE_URL);

@@ -8,11 +8,11 @@ Key facts:
 - Privacy: no account is needed to start; asks are stored on the user's phone. Optional app lock and PDF export.
 - Faith is part of the foundation but never forced: Today's word mixes Bible verses (World English Bible) with gratitude and wisdom quotes, and Scripture can be turned off.
 - Make it plain meter: checks each ask for four things (what it is, details, a name or number, a when or where) and suggests what to add. It never blocks saving.
-- Support: support@visionwrit.com or the contact form at https://visionwrit.com/help.html#contact
+- Support: support@visionwrit.com or the contact form at https://visionwrit.com/help#contact
 
 ## Pages
 
 - [Home](https://visionwrit.com/): what Visionwrit is, how it works, the Make it plain meter, features, and Free vs Plus plans
-- [Help Center](https://visionwrit.com/help.html): help topics and the contact form
-- [FAQ](https://visionwrit.com/faq.html): answers about asks, reading and reminders, the vision board, Visionwrit Plus, privacy and troubleshooting
-- [Feature Requests](https://visionwrit.com/feature-requests.html): the product roadmap and a form to suggest features
+- [Help Center](https://visionwrit.com/help): help topics and the contact form
+- [FAQ](https://visionwrit.com/faq): answers about asks, reading and reminders, the vision board, Visionwrit Plus, privacy and troubleshooting
+- [Feature Requests and Roadmap](https://visionwrit.com/feature-requests): the product roadmap and a form to suggest features

@@ -6,13 +6,19 @@ The public website for Visionwrit: home page, Help Center, FAQ, and Feature Requ
 
 | File | What it is |
 | --- | --- |
-| `index.html` | Home: hero with the app's phone screens, the method, Make it plain, features, Free vs Plus |
-| `help.html` | Help Center: topic cards and the contact form |
-| `faq.html` | FAQ grouped by topic, with search |
-| `feature-requests.html` | Roadmap board and the feature request form |
+| `index.html` | Home (visionwrit.com): hero with the app's phone screens, the method, Make it plain, features, Free vs Plus |
+| `help.html` | Help Center: topic cards and the contact form (visionwrit.com/help) |
+| `faq.html` | FAQ grouped by topic, with search (visionwrit.com/faq) |
+| `feature-requests.html` | Roadmap board and the feature request form (visionwrit.com/feature-requests) |
 | `styles.css` | All styling. Colors match the app's Morning light and Night sky themes (`Code/src/constants/theme.ts`) |
 | `site.js` | Shared header, footer and form handling |
 | `img/` | Pen logo, app icon and favicon (from `Business/02 Product Design/Brand`) |
+
+## Page addresses
+
+GitHub Pages serves each `.html` file without the extension, so `help.html` is visionwrit.com/help. Always link to pages as `/`, `/help`, `/faq` and `/feature-requests`. Each page's canonical tag points to its clean address, so search engines use it even though the `.html` version also loads.
+
+`home.html` forwards visionwrit.com/home to visionwrit.com, and `productroadmap.html` forwards visionwrit.com/productroadmap to /feature-requests. Keep both so old links keep working.
 
 ## Settings to change before going live
 
@@ -25,7 +31,7 @@ In the footer (in `site.js`): change "A Leonem Group LLC company" to "Visionwrit
 
 ## After changing styles.css or site.js
 
-Each page loads them as `styles.css?v=20261031e` and `site.js?v=20261031e`. Change that date on all four pages whenever either file changes, so visitors' browsers fetch the new version instead of a cached one.
+Each page loads them as `styles.css?v=20261031g` and `site.js?v=20261031g`. Change that date on all four pages whenever either file changes, so visitors' browsers fetch the new version instead of a cached one.
 
 ## Search and AI visibility (SEO and GEO)
 
