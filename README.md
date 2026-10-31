@@ -23,6 +23,10 @@ At the top of `site.js`:
 
 In the footer (in `site.js`): change "A Leonem Group LLC company" to "Visionwrit LLC" once the LLC is formed.
 
+## After changing styles.css or site.js
+
+Each page loads them as `styles.css?v=20261031` and `site.js?v=20261031`. Change that date on all four pages whenever either file changes, so visitors' browsers fetch the new version instead of a cached one.
+
 ## Preview it
 
 Open `index.html` in a browser.
