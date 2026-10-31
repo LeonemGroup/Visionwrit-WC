@@ -25,7 +25,7 @@ In the footer (in `site.js`): change "A Leonem Group LLC company" to "Visionwrit
 
 ## After changing styles.css or site.js
 
-Each page loads them as `styles.css?v=20261031b` and `site.js?v=20261031b`. Change that date on all four pages whenever either file changes, so visitors' browsers fetch the new version instead of a cached one.
+Each page loads them as `styles.css?v=20261031c` and `site.js?v=20261031c`. Change that date on all four pages whenever either file changes, so visitors' browsers fetch the new version instead of a cached one.
 
 ## Preview it
 

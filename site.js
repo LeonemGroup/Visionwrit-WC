@@ -25,7 +25,7 @@ const LOGO = '<img src="img/mark.png" alt="" width="17" height="34">Visionwrit';
     '<div class="container foot"><div><a class="logo" href="index.html">' + LOGO + '</a><p>Write the vision. Make it plain. Read it daily.</p></div>' +
     '<div><h4>Support</h4><ul><li><a href="help.html">Help Center</a></li><li><a href="faq.html">FAQ</a></li><li><a href="help.html#contact">Contact us</a></li></ul></div>' +
     '<div><h4>Visionwrit</h4><ul><li><a class="play" href="#">Google Play</a></li><li><a href="index.html#plus">Visionwrit Plus</a></li><li><a href="feature-requests.html">Roadmap</a></li></ul></div></div>' +
-    '<div class="container legal"><span>© 2026 Visionwrit · A Leonem Group LLC company</span><span>No ads. We never sell your data.</span></div>';
+    '<div class="container legal"><span>© 2026 Visionwrit · A Leonem Group LLC company</span><span>We never sell your data.</span></div>';
   document.body.append(footer);
   document.querySelectorAll(".play").forEach(a => a.href = PLAY_STORE_URL);
 })();
